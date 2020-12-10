@@ -6,16 +6,14 @@ Terraform “[Backend](https://www.terraform.io/docs/backends/index.html)” 는
 >
 > S3는 저장소 역할을 하고 DynamoDB는 여러명의 사용자가 함께 테라폼 코드를 작성할 경우 중복 수정하는것을 막기 위해서 lock기능을 제공
 
-
+<br>
 
 ### Terraform Backend 를 사용하는 이유?
 
 - Locking : 인프라를 변경한다는 것은 굉장히 민감한 작업이 될 수 있기에, 원격 저장소를 사용함으로써 동시에 같은 state를 접근하는 것을 막아 의도치 않은 변경을 방지
 - Backup : 로컬 스토리지에 저장한다는 것은 유실의 가능성을 내포해, S3와 같은 원격 저장소를 사용해 state 파일의 유실을 방지
 
-
-
-
+<br>
 
 ## Terraform Variables
 
@@ -25,7 +23,7 @@ Terraform 은 HCL Syntax를 가진 언어. 언어적 특성을 가지고 있기 
 
 선언 : variables.tf
 
-```json
+```terraform
 variable "aws_region" {
   description = "region_for_aws."
 }
@@ -35,7 +33,7 @@ variable "aws_region" {
 
 주입 : terraform.tfvars 
 
-```json
+```terraform
 aws_region = "ap-northeast-2"
 ```
 
@@ -43,7 +41,7 @@ aws_region = "ap-northeast-2"
 
 사용 : provider.tf           
 
-```json
+```terraform
 provider "aws" {
   region = var.aws_region
 }

@@ -8,7 +8,7 @@ variable "aws_profile" {
 }
 
 variable "aws_ecr" {
-  description = "AWS ECR "
+  description = "AWS ECR"
 }
 
 variable "container_name" {

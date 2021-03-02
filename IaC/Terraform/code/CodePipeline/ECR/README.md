@@ -2,6 +2,10 @@
 
 <br>
 
+### ![Resource Graph](./graph.svg)
+
+<br>
+
 ### Sample `terraform.tfvars`
 
 ```shell
@@ -43,8 +47,6 @@ git clone tf_source_repo_clone_url_http
 > git push origin # master branch로 push
 > ```
 
-
-
 ### 방법 2. 로컬에 새로운 Repo를 생성해 CodeCommit에 push하기 (비어있는 folder에서 진행)
 
 ```shell
@@ -56,8 +58,6 @@ git config --global credential.helper '!aws codecommit credential-helper $@'
 git config --global credential.UseHttpPath true
 ```
 
-
-
 CodeCommit Repo 사용을 위한 git remote 지정
 
 ```shell
@@ -65,10 +65,8 @@ git remote add origin $tf_source_repo_clone_url_http
 git remote -v
 ```
 
-
 <br>
 
 ---
 
 Reference : [devops-ecs-fargate workshop](https://devops-ecs-fargate.workshop.aws/en/1-introduction.html)
-

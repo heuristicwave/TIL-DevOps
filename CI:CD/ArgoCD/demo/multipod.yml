@@ -36,7 +36,6 @@ spec:
                 configMapKeyRef:
                   name: mongodb-configmap
                   key: database_url
-      containers:
         - name: mongodb
           image: mongo
           ports:

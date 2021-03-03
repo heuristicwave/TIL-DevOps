@@ -35,7 +35,7 @@ echo $tf_source_repo_clone_url_http	# 확인
 ### 방법 1. CodeCommit Repo 로컬에 clone하기 (비어있는 folder에서 진행)
 
 ```shell
-git clone tf_source_repo_clone_url_http
+git clone $tf_source_repo_clone_url_http
 ```
 
 > 이미 작업해둔 코드가 있다면, git clone 된 위치에 코드를 위치시키고 commit 한다

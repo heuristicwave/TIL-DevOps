@@ -1,26 +1,27 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
 metadata:
-  name: my-app
+  name: my-app-rollout-bluegreen
   labels:
     app: my-app
 spec:
   replicas: 4
+  revisionHistoryLimit: 2
   strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxUnavailable: 3
-      maxSurge: 4
+    blueGreen:
+      activeService: my-app-service-active
+      previewService: my-app-service-preview
+      autoPromotionEnabled: false
   selector:
     matchLabels:
-      app: my-app
+      app: my-app-rollout-bluegreen
   template:
     metadata:
       labels:
-        app: my-app
+        app: my-app-rollout-bluegreen
     spec:
       containers:
-        - name: my-app
+        - name: my-app-rollout-bluegreen
           image: 061165606031.dkr.ecr.ap-northeast-2.amazonaws.com/my-app:latest
           ports:
             - containerPort: 4000
@@ -44,13 +45,27 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-app-service
+  name: my-app-service-active
 spec:
   selector:
-    app: my-app
+    app: my-app-rollout-bluegreen
   type: LoadBalancer
   ports:
     - protocol: TCP
       port: 4000
       targetPort: 4000
       nodePort: 30000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-app-service-preview
+spec:
+  selector:
+    app: my-app-rollout-bluegreen
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 4000
+      targetPort: 4000
+      nodePort: 30001

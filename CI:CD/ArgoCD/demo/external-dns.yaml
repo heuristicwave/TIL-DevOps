@@ -39,6 +39,8 @@ kind: Deployment
 metadata:
   name: external-dns
 spec:
+  selector:
+    app: external-dns
   strategy:
     type: Recreate
   template:

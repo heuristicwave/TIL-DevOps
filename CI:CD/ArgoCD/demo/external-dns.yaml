@@ -40,7 +40,8 @@ metadata:
   name: external-dns
 spec:
   selector:
-    app: external-dns
+    matchLabels:
+      app: external-dns
   strategy:
     type: Recreate
   template:

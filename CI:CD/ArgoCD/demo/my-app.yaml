@@ -54,7 +54,7 @@ spec:
     - protocol: TCP
       port: 4000
       targetPort: 4000
-      nodePort: 30000
+      nodePort: 30001
 ---
 apiVersion: v1
 kind: Service
@@ -68,4 +68,4 @@ spec:
     - protocol: TCP
       port: 4000
       targetPort: 4000
-      nodePort: 30001
+      nodePort: 30002

@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: my-app-rollout-bluegreen
-          image: 061165606031.dkr.ecr.ap-northeast-2.amazonaws.com/my-app:latest
+          image: 061165606031.dkr.ecr.ap-northeast-2.amazonaws.com/my-app:5374c76
           ports:
             - containerPort: 4000
           env:

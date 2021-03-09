@@ -60,12 +60,10 @@ spec:
       protocol: TCP
       port: 80
       targetPort: 4000
-      nodePort: 30001
     - name: https
       protocol: TCP
       port: 443
       targetPort: 4000
-      nodePort: 30001
 ---
 apiVersion: v1
 kind: Service
@@ -85,9 +83,7 @@ spec:
       protocol: TCP
       port: 80
       targetPort: 4000
-      nodePort: 30001
     - name: https
       protocol: TCP
       port: 443
       targetPort: 4000
-      nodePort: 30001

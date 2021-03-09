@@ -5,8 +5,8 @@ metadata:
   labels:
     app: my-app
 spec:
-  replicas: 4
-  revisionHistoryLimit: 2
+  replicas: 2
+  revisionHistoryLimit: 1
   strategy:
     blueGreen:
       activeService: my-app-service-active
@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: my-app-rollout-bluegreen
-          image: 061165606031.dkr.ecr.ap-northeast-2.amazonaws.com/my-app:5374c76
+          image: 061165606031.dkr.ecr.ap-northeast-2.amazonaws.com/my-app:a5d0dc0
           ports:
             - containerPort: 4000
           env:

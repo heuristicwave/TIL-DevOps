@@ -38,6 +38,16 @@ resource "aws_iam_role_policy_attachment" "eks-node-AmazonEC2ContainerRegistryRe
   role       = aws_iam_role.eks-node.name
 }
 
+resource "aws_iam_role_policy_attachment" "eks-node-AmazonRoute53ReadOnlyAccess" {
+  policy_arn = "arn:aws:iam::aws:policy/AmazonRoute53ReadOnlyAccess"
+  role       = aws_iam_role.eks-node.name
+}
+
+resource "aws_iam_role_policy_attachment" "eks-node-AmazonRoute53AutoNamingRegistrantAccess" {
+  policy_arn = "arn:aws:iam::aws:policy/AmazonRoute53AutoNamingRegistrantAccess"
+  role       = aws_iam_role.eks-node.name
+}
+
 resource "aws_eks_node_group" "eks" {
   cluster_name    = aws_eks_cluster.eks_cluster.name
   node_group_name = "eks"
@@ -54,5 +64,7 @@ resource "aws_eks_node_group" "eks" {
     aws_iam_role_policy_attachment.eks-node-AmazonEKSWorkerNodePolicy,
     aws_iam_role_policy_attachment.eks-node-AmazonEKS_CNI_Policy,
     aws_iam_role_policy_attachment.eks-node-AmazonEC2ContainerRegistryReadOnly,
+    aws_iam_role_policy_attachment.eks-node-AmazonRoute53ReadOnlyAccess,
+    aws_iam_role_policy_attachment.eks-node-AmazonRoute53AutoNamingRegistrantAccess,
   ]
 }

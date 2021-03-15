@@ -21,7 +21,11 @@
 
 2 & 3번 이 서로 100% 일치하게 만드는 것이 중요한데, 이를 위해 import, state 등의 명령어를 제공
 
-인프라 정의는 Local 코드에서 시작함. 개발자는 로컬에서 테라폼 코드를 정의한 후에 해당 코드를 실제 인프라로프로비전함. 이때, backend를 구성하여 최신 코드를 저장.
+> 2번과 3번이 다를 경우, `terraform import {resource type}.{resource name} {resource id}` 명령어로 상태를 일치시켜주고 해당하는 설정 코드를 수기로 작성해야한다. 이때 [terraforming](https://github.com/dtan4/terraforming)의 도움을 받을 수 있다.
+> <br>
+> 자세한 설명은 [Outsider's Dev Stroy](https://blog.outsider.ne.kr/1292) 에서 확인 가능하다.
+
+인프라 정의는 Local 코드에서 시작함. 개발자는 로컬에서 테라폼 코드를 정의한 후에 해당 코드를 실제 인프라로 프로비전함. 이때, backend를 구성하여 최신 코드를 저장.
 
 <br>
 
@@ -48,4 +52,5 @@
 
 ---
 
-위 자료는 `송주영`님의 강의를 듣고 정리한 자료입니다.
+위 자료는 [송주영님의 강의](https://www.youtube.com/watch?v=3qSpwqckvXQ)를 듣고 정리한 자료입니다.
+

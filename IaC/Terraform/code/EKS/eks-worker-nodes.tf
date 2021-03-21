@@ -48,6 +48,11 @@ resource "aws_iam_role_policy_attachment" "eks-node-AmazonRoute53AutoNamingRegis
   role       = aws_iam_role.eks-node.name
 }
 
+resource "aws_iam_role_policy_attachment" "eks-node-CloudWatchAgentServerPolicy" {
+  policy_arn = "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
+  role       = aws_iam_role.eks-node.name
+}
+
 resource "aws_eks_node_group" "eks" {
   cluster_name    = aws_eks_cluster.eks_cluster.name
   node_group_name = "eks"

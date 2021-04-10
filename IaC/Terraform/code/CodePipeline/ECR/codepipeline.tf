@@ -18,7 +18,7 @@ EOF
 }
 
 resource "aws_iam_policy" "codepipeline_policy" {
-  description = "Policy to allow codepipeline to execute"
+  description = "Codepipeline Execution Policy"
   policy      = <<EOF
 {
   "Version": "2012-10-17",
@@ -34,7 +34,6 @@ resource "aws_iam_policy" "codepipeline_policy" {
     {
       "Action" : [
         "codebuild:StartBuild", "codebuild:BatchGetBuilds",
-        "cloudformation:*",
         "iam:PassRole"
       ],
       "Effect": "Allow",
@@ -49,10 +48,8 @@ resource "aws_iam_policy" "codepipeline_policy" {
     },
     {
       "Action" : [
-        "codecommit:CancelUploadArchive",
-        "codecommit:GetBranch",
-        "codecommit:GetCommit",
-        "codecommit:GetUploadArchiveStatus",
+        "codecommit:CancelUploadArchive", "codecommit:GetBranch",
+        "codecommit:GetCommit", "codecommit:GetUploadArchiveStatus",
         "codecommit:UploadArchive"
       ],
       "Effect": "Allow",

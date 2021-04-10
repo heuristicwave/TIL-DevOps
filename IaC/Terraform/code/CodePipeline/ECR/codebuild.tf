@@ -1,7 +1,6 @@
-data "aws_caller_identity" "current" {}
-
 # Codebuild role
 resource "aws_iam_role" "codebuild_role" {
+  name               = "terraform-codebuild"
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -49,15 +48,6 @@ resource "aws_iam_policy" "codebuild_policy" {
       ],
       "Effect": "Allow",
       "Resource": "${aws_ecr_repository.image_repo.arn}"
-    },
-    {
-      "Action": [
-        "ecr:GetDownloadUrlForLayer",
-        "ecr:BatchGetImage",
-        "ecr:BatchCheckLayerAvailability"
-      ],
-      "Effect": "Allow",
-      "Resource": "${aws_ecr_repository.image_repo.arn}"
     }
   ]
 }
@@ -72,12 +62,9 @@ resource "aws_iam_role_policy_attachment" "codebuild-attach" {
 
 # Codebuild project
 resource "aws_codebuild_project" "codebuild" {
-  depends_on = [
-    aws_codecommit_repository.source_repo,
-    aws_ecr_repository.image_repo
-  ]
   name         = "codebuild-${var.source_repo_name}-${var.source_repo_branch}"
   service_role = aws_iam_role.codebuild_role.arn
+
   artifacts {
     type = "CODEPIPELINE"
   }

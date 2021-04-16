@@ -42,7 +42,9 @@ CLI로 S3이관 시, 작은 크기의 대용량 데이터를 업로드하면 오
 $ aws s3 sync /$SOURCE_PATH/ s3://{BUCKET_NAME}/$PATH --delete
 ```
 
-> **CLI Configuration** > <br> > `~/.aws/config`에 정의
+> **CLI Configuration**
+>
+> `~/.aws/config`에 정의
 >
 > ```
 > [profile name]
@@ -61,6 +63,29 @@ $ aws s3 sync /$SOURCE_PATH/ s3://{BUCKET_NAME}/$PATH --delete
 > $ aws configure set default.s3.multipart_threshold 64mb
 > $ aws configure set default.s3.multipart_chunksize 16mb
 > ```
+
+<br>
+
+## AWS 서비스를 이용한 데이터 마이그레이션
+
+### Storage Gateway
+
+온프레미스에 있는 데이터를 클라우드로 연계하기 위한 입구를 제공하는 서비스
+
+참조 빈도가 높은 데이터는 온프레미스의 고속 스토리지, 참조 빈도가 낮은 데이터나 백업 데이터는 Storage Gateway를 이용해 클라우드에 저장
+(VMware, Hyper-V의 가상 이미지가 제공되어 온프레미스에 간단히 도입)
+
+- 파일 Gateway <br>
+  S3를 클라이언트 서버에서 NFS 마운트해 파일 시스템과 같이 사용할 수 있음 <br>
+  생성된 파일은 비동기이지만 거의 실시간으로 S3에 업로드(고속의 엑세스가 요구되는 경우 사전 테스트 필수)
+- 볼륨 Gateway <br>
+  S3에 저장하는 것은 파일 게이트웨이와 동일, 각 파일을 Object로 저장하지 않고 Gateway로 사용하는 영역을 볼륨으로 관리 <br>
+  클라이언트 서버에서 볼륨 게이트웨이에 연결하는 방식으로 NFS가 아닌 iSCSI 프로토콜 제공 <br>
+  - 캐시형(Cache) 볼륨 <br>
+    자주 사용하는 데이터를 Storage Gateway의 캐시 디스크에 저장해서 고속 액세스를 가능하게 하고 모든 데이터 저장에 S3을 사용함. 데이터의 양이 증가하더라도 로컬 디스크를 확장할 필요 없이 효율적으로 대용량 데이터를 관리할 수 있습니다.
+  - 보관형(Store) 볼륨 <br>
+    데이터를 모두 로컬 스토리지에 저장하고, 데이터를 정기적으로 EBS로 사용 가능한 스냅샷 형식으로 S3으로 전송함. 데이터의 백업에 중점을 둔 용도에 적합함.
+- 테이프 Gateway
 
 <br>
 

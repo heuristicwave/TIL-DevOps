@@ -89,6 +89,32 @@ $ aws s3 sync /$SOURCE_PATH/ s3://{BUCKET_NAME}/$PATH --delete
 
 <br>
 
+### Snowball
+
+80TB의 데이터를 저장할 수 있는 하드웨어 장비와 클라이언트 도구를 제공하는 서비스
+
+### Snowball Edge
+
+- 데이터 전송 방식 : S3 API, NFS 통신 프로토콜 지원
+- 연결 인터페이스 : 최대 40Gbps의 광섬유 인터페이스 사용, USB 3.0 or PCIe 포트 지원
+- 저장 데이터 용량 : 80TB => 100TB, 클러스터링 구성을 통해 PB급 데이터 처리
+- S3로 전송할 때의 처리 : Lambda에서 정의한 전처리를 수행할 수 있음
+
+### Snowmobile
+
+100PB까지 한번에 이송
+
+<br>
+
+### Server Migration Service
+
+SMS는 가상 어플라이언스인 Server Migration Connector를 사용해 온프레미스 환경에서 실행되는 가상 머신의 마이그레이션을 지원
+
+- 차분 전송 가능 <br>
+  마이그레이션 후, 변경이 생겼을 경우 전 상태에서의 변경을 파악하고 차분만 마이그레이션해 AMI 생성 가능
+
+<br>
+
 ---
 
 Reference : [AWS 시스템 설계와 마이그레이션](http://www.yes24.com/Product/Goods/67031301)

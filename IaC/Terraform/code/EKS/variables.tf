@@ -6,3 +6,7 @@ variable "cluster-name" {
   default = "terraform-eks-cluster"
   type    = string
 }
+
+variable "instance_type" {
+  default = ["c5.large"]
+}

@@ -1,1 +1,3 @@
 .DS_Store
+IaC/Terraform/code/EKS/.terraform.lock.hcl
+*.hcl

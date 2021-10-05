@@ -4,6 +4,10 @@
 
 - [x] [BUILD YOUR FIRST CRUD API IN 45 MINUTES OR LESS!](https://simple-crud-api.workshop.aws/) (`API Gateway`)
 
+## Event Driven
+
+- [ ] [Building event driven architectures on AWS](https://event-driven-architecture.workshop.aws/)
+
 ## DevSecOps
 
 - [ ] [DevSecOps on AWS](https://devsecops.workshop.aws/en/)
@@ -20,3 +24,4 @@
 ## Migration
 
 - [x] [AWS Application Migration Workshop](https://application-migration-with-aws.workshop.aws/en/) (`Fargate`)
+- [x] [Modernization with AWS App2Container](https://app2container.workshop.aws/ko/)

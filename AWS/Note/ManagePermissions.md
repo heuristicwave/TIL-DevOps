@@ -21,3 +21,8 @@
 4. 임시 키의 반납 <br>
    Federated Identities는 사전에 등록된 IAM 역할과 동등한 권한이 있는 Temporary Credentials를 취득하고 이용자에게 반납.
    이용자는 이 임시 키를 이용해 AWS 리소스 작업을 함.
+
+## User Pools
+
+사용자의 등록이나 로그인, 로그아웃 등의 인증기구를 제공하는 완전 관리형 ID 프로바이더 서비스
+133

@@ -51,8 +51,34 @@ CNAME 레코드 및 값을 반환함으로써 서비스를 externalName 필드�
 
 - 클러스터 외부에서 접근하는 서비스의 수를 제한해야 한다. 대부분의 서비스는 ClusterIP로 두고 외부 접근 서비스만 노출하는 것이 이상적이다.
 - 노출 서비스가 주로 HTTP/HTTPS 기반이라면 인그레스 API와 컨트롤러를 사용해 TLS와 함께 트래픽을 서비스로 라우팅하는게 가장 좋다.
+- 컨트롤러 구현마다 설정 어노테이션이 다르므로 배포 코드가 쿠버네티스 간에 이식되는 것을 방지해야 한다.
+
+## Network Security Policy
+
+Network Policy API를 사용해 워크로드에 정의된 네트워크 수준의 인그레서/이그레스 접근을 제어할 수 있다.
+또한 포드 그룹 간 혹은 다른 엔드포인트로 통신하는 것을 제어할 수 있다.
+
+### Network Policy Best Practices
+
+## Service Meshes
+
+### Service Mesh Best Practices
 
 <br>
+
+## 공부 자료
+
+- [k8s network policies](https://sandeepbaldawa.medium.com/k8s-network-policies-95ba87ac2251)
+
+  > NetworkPolicy : Layer3 & 4에서 작동하며  ip, ports, namespace를 사용해 트래픽 관리
+  >
+  > ServiceMesh : Layer7에서 작동하며 header, path 등 과 같은 어플리케이션 속성을 활용해 트래픽 관리
+
+- 
+
+
+
+
 
 <br>
 

@@ -9,9 +9,9 @@
 시크릿 데이터 : base64로 인코딩된 데이터에 기본 크기가 1MB로 제한되는 소량의 데이터로 3가지 타입이 있다.
 
 - `generic` : 파일 디렉터리로 생성되거나 다음과 같은 문자열 리터럴로 생성된다.
-  ```shell
-  $ kubectl create secret generic {mysecret} --from-literal={key1} --from-literal={key2}
-  ```
+
+      kubectl create secret generic {mysecret} --from-literal={key1} --from-literal={key2}
+
 - `docker-registry` : Private Docker Registry 인증에 필요한 정보
 - `tls` : public/private key pair로 TLS 시크릿을 생성.
 
@@ -22,7 +22,9 @@
 
 ## Common Best Practices for the ConfigMap and Secrets APIs
 
-1. 추가 예정
+1. 새로운 버전의 포드를 다시 배포하지 않고 앱을 동적으로 변경하려면 컨피그맵과 시트릿을 볼륨으로 마운트한다.
+2. 포드가 배포되기 전, 이를 소비할 포드의 네임스페이스 안에 컨피그맵/시크릿이 존재해야 한다. 옵션 플래그를 사용하면 컨피그맵/시크릿이 없는 경우 파드가 시작되지 않도록 할 수 있다.
+3.
 
 <br>
 
@@ -34,7 +36,17 @@
 
 1. Subjects : 실제로 접근을 확인해야 하는 항목. 통상 user, service account, group. 사용자와 그룹은 권한 모듈을 이용해 K8s 외부에서 관리한다. (x.509 클라이언트 증명, bearer token 등으로 분류)
 2. Rules : API로 특정 객체(리소스)나 객체 그룹을 실행할 수 있는 기능
-   <br>
+3. Role : 정의된 규칙을 적용할 범위. 쿠버네티스에는 role과 clusterRole이 존재.
+   > role : 하나의 네임스페이스에 적용 <br>
+   > clusterRole : 모든 네임스페이스, 클러스터에 걸쳐 적용
+4. Role Binding : 사용자나 그룹을 특정 롤에 매핑
+
+### Best Practices
+
+- 애플리케이션 코드가 실제로 K8s API와 직접 상호작용할 떄만 RBAC 설정이 필요
+- p96
+
+<br>
 
 ---
 

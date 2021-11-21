@@ -1,12 +1,8 @@
 # Fluentd로 CW에 저장하기
 
-
-
 ## 필요한 정책 추가하기
 
 `CloudWarchAgentServerPolicy` 정책 연결
-
-
 
 ## Namespace 생성
 
@@ -15,8 +11,6 @@
 ```shell
 kubectl apply -f https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/k8s-deployment-manifest-templates/deployment-mode/daemonset/container-insights-monitoring/cloudwatch-namespace.yaml
 ```
-
-
 
 ## FluentD 설치
 
@@ -50,11 +44,8 @@ kubectl -n amazon-cloudwatch logs -f fluentd-cloudwatch-{}
 
 https://console.aws.amazon.com/cloudwatch/ 에서 로그 그룹 확인하기
 
-
-
 <br>
 
 ---
 
 Reference : [AWS docs container insights setup logs](https://docs.aws.amazon.com/ko_kr/AmazonCloudWatch/latest/monitoring/Container-Insights-setup-logs.html)
-

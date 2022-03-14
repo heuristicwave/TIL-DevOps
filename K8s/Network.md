@@ -1,5 +1,29 @@
 # Networking, Network Security, And Service Mesh
 
+## Basics
+
+Get Network Info
+
+```shell
+# Controlplane Network Interface
+ip -a | grep <ip>
+# Controlplane Mac Addr
+ip link show <interface, ex:eth0>
+# Node Mac Addr
+arp <node>
+# Default Gateway
+ip route show default
+# kube-scheduler port
+netstat -nplt | grep scheduler
+```
+
+Service Networking
+
+```shell
+# IP Range configured for the services
+cat /etc/kubernetes/manifests/kube-apiserver.yaml | grep ip
+```
+
 ## Kubernetes Network Principles
 
 **동일한 포드 내의 컨테이너 간 통신** : 동일한 네트워크를 공유해 localhost 통신이 가능. 동일한 포드 내의 컨테이너는 다른 포트를 열어야 한다.
@@ -9,6 +33,22 @@
 **서비스와 포드 간의 통신** : 서비스는 IP 주소와 포트를 나타내며 각 노드는 서비스에 연계된 엔드포인트로 트래픽을 전달한다.
 
 ## Network Plug-ins
+
+Get [K8s network plugin](https://kubernetes.io/ko/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/)
+
+```shell
+ps -aux | grep kubelet | grep network-plugin
+# Available CNI plugins
+ls /opt/cni/bin
+# CNI plugin configured
+ls /etc/cni/net.d
+# Pod IP addr range
+ip addr show <network plugin ex:weave>  # case 1
+ifconfig | grep -F1 weave               # case 2, -F1 앞에서 1줄까지
+# weave's range of IP addr
+kubectl logs <weave pod> weave -n kube-system | grep ipalloc
+cat /etc/kubernetes/manifests/kube-apiserver.yaml | grep ip
+```
 
 ### Kubenet
 
@@ -47,6 +87,12 @@ CNAME 레코드 및 값을 반환함으로써 서비스를 externalName 필드�
 인그레스 API는 HTTP 수준의 라우터로, 호스트와 경로 기반 규칙으로 특정 백엔드 서비스에게 트래픽 전달.
 인그래스 컨트롤러는 인그래스 API와 분리되어 있으며, 컨트롤러지만 시스템의 일부가 아니며 동적 구성을 위한 쿠버네티스 인그래스 API와 인터페이스하는 서드파티 컨트롤러다.
 
+Get Ingress Resource
+
+```shell
+kubectl get ingress --all-namespaces
+```
+
 ### Services and Ingress Controllers Best Practices
 
 - 클러스터 외부에서 접근하는 서비스의 수를 제한해야 한다. 대부분의 서비스는 ClusterIP로 두고 외부 접근 서비스만 노출하는 것이 이상적이다.
@@ -70,18 +116,14 @@ Network Policy API를 사용해 워크로드에 정의된 네트워크 수준의
 
 - [k8s network policies](https://sandeepbaldawa.medium.com/k8s-network-policies-95ba87ac2251)
 
-  > NetworkPolicy : Layer3 & 4에서 작동하며  ip, ports, namespace를 사용해 트래픽 관리
+  > NetworkPolicy : Layer3 & 4에서 작동하며 ip, ports, namespace를 사용해 트래픽 관리
   >
   > ServiceMesh : Layer7에서 작동하며 header, path 등 과 같은 어플리케이션 속성을 활용해 트래픽 관리
 
-- 
-
-
-
-
+-
 
 <br>
 
 ---
 
-위 내용은 `Kubernetes Best Practices - Brendan Burns, Eddie Villalba`를 학습하고 정리한 내용입니다.
+참고자료 : `Kubernetes Best Practices - Brendan Burns, Eddie Villalba`

@@ -4,6 +4,10 @@
 
 - [x] [BUILD YOUR FIRST CRUD API IN 45 MINUTES OR LESS!](https://simple-crud-api.workshop.aws/) (`API Gateway`)
 
+## Content Delivery Network
+
+- [x] [Improve Your Architecture With Amazon CloudFront](https://catalog.us-east-1.prod.workshops.aws/workshops/4557215e-2a5c-4522-a69b-8d058aba088c/en-US/) : CF Cache Control, Multi Origin, Behaviors
+
 ## DevSecOps
 
 - [ ] [DevSecOps on AWS](https://devsecops.workshop.aws/en/)
@@ -38,5 +42,3 @@
 ## ECS
 
 - [x] [CI/CD workshop for Amazon ECS](https://catalog.us-east-1.prod.workshops.aws/workshops/869f7eee-d3a2-490b-bf9a-ac90a8fb2d36/en-US/) : Implement a number of pipeline patterns
-
-

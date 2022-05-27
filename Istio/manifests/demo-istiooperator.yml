@@ -5,3 +5,5 @@ metadata:
   name: example-istiocontrolplane
 spec:
   profile: demo
+  meshConfig:
+    accessLogFile: ""

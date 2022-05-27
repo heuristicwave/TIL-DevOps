@@ -19,7 +19,7 @@ metadata:
   name: nginx-service
 spec:
   hosts:
-  - "*"
+  - "test.heuri.dev"
   gateways:
   - test-gateway
   http:

@@ -13,9 +13,10 @@ spec:
     metadata:
       labels:
         app: nginx
+        # sidecar.istio.io/inject: "false"
     spec:
       containers:
       - name: nginx
-        image: nginx:1.14.2
+        image: nginx:1.16.0
         ports:
         - containerPort: 80

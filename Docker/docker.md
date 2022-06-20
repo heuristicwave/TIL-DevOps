@@ -108,3 +108,14 @@ nginx
 
 
 
+# Debugging
+
+```shell
+docker system events
+journalctl -u docker
+docker system df -v
+docker stats
+```
+
+
+

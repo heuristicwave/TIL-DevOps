@@ -5,6 +5,14 @@
 **매트릭** : 특정 기간에 측정한 일련의 숫자 <br>
 **로그** : 시스템을 분석하기 위해 사용
 
+### Command
+
+2개 이상의 pod일때 선택하여 로그 보기
+
+```shell
+kubectl logs <pod name> -c <container name>
+```
+
 <br>
 
 ## Monitoring Patterns
@@ -91,8 +99,6 @@ K8s에서 모니터링할 때는 다음과 같은 계층적 방식을 취해야 
 - **Exporter(Node-Exporter)** : 모니터링 대상이 프로메테우스의 데이터 포맷을 지원히자 않는 경우 별도의 에이전트를 설치하는데 이를 Exporter라고 한다. (Node-exporter, nginx-exporter, redis-exporter, mysql-exprter)
 - **AlertManager** : 프로메테우스로부터 alert를 전달받아 적절한 포맷으로 가공해 notify 해줌.
 
-
-
 > [프로메테우스 모니터링의 장단점](https://twofootdog.tistory.com/17)
 >
 > 장점 : 모든 이벤트를 데이터에 Push하는 ELK의 방식과는 달리 일정 간격 마다 데이터를 수집하기 때문에 저사양의 스펙으로 모니터링 시스템 구축이 가능하다. 설정파일을 프로메테우스 서버 설정파일만 변경 후, node-exporter는 배포만 하면 되기 때문에 시스템 운영이 용이하다.
@@ -155,4 +161,4 @@ K8s에서 모니터링할 때는 다음과 같은 계층적 방식을 취해야 
 
 ---
 
-위 내용은 `Kubernetes Best Practices - Brendan Burns, Eddie Villalba`를 학습하고 정리한 내용입니다.
+참고자료 : `Kubernetes Best Practices - Brendan Burns, Eddie Villalba`

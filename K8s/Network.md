@@ -24,6 +24,8 @@ Service Networking
 cat /etc/kubernetes/manifests/kube-apiserver.yaml | grep ip
 ```
 
+<br>
+
 ## Kubernetes Network Principles
 
 **동일한 포드 내의 컨테이너 간 통신** : 동일한 네트워크를 공유해 localhost 통신이 가능. 동일한 포드 내의 컨테이너는 다른 포트를 열어야 한다.
@@ -120,7 +122,11 @@ Network Policy API를 사용해 워크로드에 정의된 네트워크 수준의
   >
   > ServiceMesh : Layer7에서 작동하며 header, path 등 과 같은 어플리케이션 속성을 활용해 트래픽 관리
 
--
+
+
+> Service는 L4 영역에서, Ingress는 L7 영역에서 통신
+
+
 
 <br>
 

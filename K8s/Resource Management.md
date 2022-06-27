@@ -1,11 +1,46 @@
 ## Advanced Scheduling Techniques
 
+### [Pod Affinity and Anti-Affinity](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity)
+
+#### Set Node Affinity
+
+#### [_Set-based_ requirement](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#set-based-requirement) : `in`, `notin`, `exists`
+
+```yaml
+# spec 하위에 기재
+affinity:
+  nodeAffinity:
+    # 같은 영역 위에 포드 배치
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: color
+              operator: In
+              values:
+                - blue # blue label이 명세된 노드에 배
+```
+
 ### Node Selector
 
 키/값 레이블 셀럭터를 사용해 특정 노드에 파드를 스케줄링하는 가장 간단한 방식.
 
 ```shell
 kubectl label node <node_name> key=value
+```
+
+#### Labels
+
+Label 정보 얻기
+
+```shell
+kubectl describe node <node name>
+kubectl get node <node name> --show-labels
+```
+
+Label 부여하기
+
+```shell
+kubectl label node <node name> key=value
 ```
 
 ### Taints and Tolerations
@@ -39,4 +74,4 @@ kubectl taint nodes node1 key1=value1:NoSchedule-
 
 ---
 
-위 내용은 `Kubernetes Best Practices - Brendan Burns, Eddie Villalba`를 학습하고 정리한 내용입니다.
+참고자료 : `Kubernetes Best Practices - Brendan Burns, Eddie Villalba`

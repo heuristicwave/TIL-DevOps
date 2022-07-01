@@ -10,10 +10,15 @@ kubectl get pods --show-labels
 쿠버네티스 API 서버에 전송하는 대신 YAML 형식으로 stdout에 출력하기
 
 ```shell
-kubectl run {podName} --image={imageName} --dry-run=client -o yaml > sample.yaml
+# Create Pod
+kubectl run <podName> --image=<imageName> --dry-run=client -o yaml > sample.yaml
+# Create Static Pod
+kubectl run --restart=Never --image=<imageName> <podName> \
+ --dry-run=client -o yaml \
+ -- command sleep 1000
 ```
 
-쿠버네티스  레플리카 셋 스케일링
+쿠버네티스 레플리카 셋 스케일링
 
 ```shell
 kubectl scale rs {replicasetName} --replicas=5
@@ -29,7 +34,14 @@ kubectl explain deployment | head -n1
 edit으로 즉시 수정해 반영하기
 
 ```shell
-kubectl edit {replicaset} {replicasetName}
+kubectl edit <deployments name>
+kubectl edit replicaset <replicaset name>
+```
+
+특정 파일로 대체하기
+
+```shell
+kubectl replace -f <file name> --force
 ```
 
 서비스로 특정 포트 노출하기
@@ -45,9 +57,27 @@ kubectl run httpd --image=httpd:alpine --port=80 --expose
 kubectl create deployment {deploymentName} --image={imageName} --replicas=3
 ```
 
+### DaemonSet
 
+```shell
+kubectl get daemonsets --all-namespaces
+kubectl describe daemonset kube-flannel-ds --namespace=kube-system
+```
 
+### Labels
 
+Label 정보 얻기
+
+```shell
+kubectl describe node <node name>
+kubectl get node <node name> --show-labels
+```
+
+Label 부여하기
+
+```shell
+kubectl label node <node name> key=value
+```
 
 ### 다중 클러스터 접근 구성
 
@@ -56,7 +86,39 @@ kubectl config view                          # context 이름 확인
 kubectl config use-context {my context}
 ```
 
+### Drain
 
+`drain`은 `cordon`과 비교하여 unschedule + evict후, 다른 노드에서 재생성
+
+```shell
+kubectl drain <node> --ignore-daemonsets
+# undrain
+kubectl uncordon <node>
+```
+
+> `--force` 로 강제로 evict 시킬 경우 lost forever
+> 
+> `cordon`으로 현재 노드에 배포된 Pod은 그대로 유지하면서, 추가적인 Pod의 배포를 제한
+
+## Upgrade
+
+Check latest stable version available for upgrade
+
+```shell
+kubeadm upgrade plan
+```
+
+Upgrade
+
+```shell
+apt update
+# Upgrade kubeadm
+apt install kubeadm=1.20.0-00
+kubeadm upgrade apply v1.20.0
+# Upgrade kubelet
+apt install kubelet=1.20.0-00
+system restart kubelet
+```
 
 ### Cheat sheet
 

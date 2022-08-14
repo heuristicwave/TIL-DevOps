@@ -72,6 +72,13 @@ kubectl taint nodes node1 key1=value1:NoSchedule-
 
 - NodeCondition : 특정 조건을 만족시키는 노드를 테인트
 
+
+
+A toleration "matches" a taint if the keys are the same and the effects are the same, and:
+
+- the `operator` is `Exists` (in which case no `value` should be specified), or
+- the `operator` is `Equal` and the `value`s are equal.
+
 ---
 
 참고자료 : `Kubernetes Best Practices - Brendan Burns, Eddie Villalba`

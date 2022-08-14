@@ -1,12 +1,19 @@
 # [AWS Workshops](https://workshops.aws/)
 
+## Language
+
+- [ ] [Learn Python On AWS Workshop](https://catalog.us-east-1.prod.workshops.aws/workshops/3d705026-9edc-40e8-b353-bdabb116c89c/en-US)
+- [ ] [GO SERVERLESS](https://golang.serverlessworkshops.io/)
+
 ## Basic Service
 
 - [x] [BUILD YOUR FIRST CRUD API IN 45 MINUTES OR LESS!](https://simple-crud-api.workshop.aws/) (`API Gateway`)
+- [ ] [AWS CloudWatch and Systems Manager Workshop](https://catalog.us-east-1.prod.workshops.aws/workshops/a8e9c6a6-0ba9-48a7-a90d-378a440ab8ba/en-US)
 
 ## Content Delivery Network
 
-- [x] [Improve Your Architecture With Amazon CloudFront](https://catalog.us-east-1.prod.workshops.aws/workshops/4557215e-2a5c-4522-a69b-8d058aba088c/en-US/) : CF Cache Control, Multi Origin, Behaviors
+- [x] [Accelerate your content using Amazon CloudFront](https://catalog.us-east-1.prod.workshops.aws/workshops/9331108e-464e-4699-8a9c-486090105878/en-US) : Distribution, Response header (Level 100)
+- [x] [Improve Your Architecture With Amazon CloudFront](https://catalog.us-east-1.prod.workshops.aws/workshops/4557215e-2a5c-4522-a69b-8d058aba088c/en-US/) : Cache Control, Multi Origin, Behaviors (Level 200)
 
 ## DevSecOps
 

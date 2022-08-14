@@ -1,6 +1,7 @@
 ## 기본 명령어
 
-```powershell
+```shell
+kubectl explain {deployment}
 kubectl decribe pod {podName}
 kubcectl get replicaset
 kubectl get pods --all-namespaces
@@ -55,6 +56,7 @@ kubectl run httpd --image=httpd:alpine --port=80 --expose
 
 ```shell
 kubectl create deployment {deploymentName} --image={imageName} --replicas=3
+kubectl create deployment {deploy} --image={image} --dry-run=client -o yaml > test.yaml
 ```
 
 ### DaemonSet
@@ -63,6 +65,16 @@ kubectl create deployment {deploymentName} --image={imageName} --replicas=3
 kubectl get daemonsets --all-namespaces
 kubectl describe daemonset kube-flannel-ds --namespace=kube-system
 ```
+
+### Selectors
+
+```yaml
+kubectl get pods --selector env=dev
+```
+
+> `--no-headers | wc -l` 을 추가해 주면 편리하게 파악 가능
+>
+> `,`로 & 조건 가능 ex) `k get all --selector bu=finance,env=prod`
 
 ### Labels
 

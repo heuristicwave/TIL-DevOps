@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: market
+  labels:
+    app: market
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: market
+  template:
+    metadata:
+      labels:
+        app: market
+    spec:
+      containers:
+      - name: market
+        image: heuristicwave/simplebank:market-v6
+        ports:
+        - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: market-service
+spec:
+  selector:
+    app: market
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+      nodePort: 30000 

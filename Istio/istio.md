@@ -13,7 +13,7 @@
 
 <br>
 
-## Command
+## Command 
 
 ```shell
 $ istioctl install --set profile=demo -y
@@ -84,6 +84,7 @@ kubectl label namespace default istio-injection=enabled --
 ### VirtualService
 
 - Hosts 등록, L7 path routing(destination policy)
+- 목적지에 대한 정책이 들어감  
 
 <br>
 

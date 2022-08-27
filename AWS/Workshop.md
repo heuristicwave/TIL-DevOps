@@ -49,3 +49,7 @@
 ## ECS
 
 - [x] [CI/CD workshop for Amazon ECS](https://catalog.us-east-1.prod.workshops.aws/workshops/869f7eee-d3a2-490b-bf9a-ac90a8fb2d36/en-US/) : Implement a number of pipeline patterns
+
+## Risk & Compliance
+
+- [ ] [Risk & Compliance Workshop](https://catalog.us-east-1.prod.workshops.aws/workshops/dd2bea89-dc7a-4bda-966a-70b4ff6e90e0/en-US) : AWS Artifacts, Config, Patching Controls with Systems Manager & CodePipeline

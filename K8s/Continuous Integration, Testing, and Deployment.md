@@ -36,3 +36,21 @@ strategy:
     maxSurge: 1         # 한 번에 업데이트할 최대 replica 수
     maxUnavailable: 1   # 롤아웃 중간에 가용하지 않는 최대 레플리카 수
 ```
+
+무중단을 위한 readiness probe & lifecycle
+
+```go
+readinessProbe:
+  httpGet:
+    path: /readiness
+    port: 8888
+lifecycle:
+  preStop:
+    exec:
+      command: ["/usr/sbin/nginx", "-s", "quit"]
+```
+
+- readiness probe : 새로운 버전이 트래픽을 수용할 준비가 되었는지 확인
+- prestop : 배포된 애플리케이션의 커넥션을 drain (graceful shutdown)
+
+> 함께보면 좋은 자료 : [kubernetes 배포시 고려해야할 kubernetes 옵션](https://tech.kakao.com/2018/12/24/kubernetes-deploy/)
